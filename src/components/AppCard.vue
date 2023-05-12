@@ -108,6 +108,9 @@ const isShowInput = (idx, newValue) => {
   isEdit.value = true
 
   if (currentItemIdx.value === idx) {
+    if (!newValue) {
+      return
+    }
     store.updateTask(idx, newValue)
     isEdit.value = false
     currentItemIdx.value = null
