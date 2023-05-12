@@ -7,19 +7,15 @@ export const useTodoListStore = defineStore('todoList', {
     completeTasks: JSON.parse(localStorage.getItem('completeTasks')) || [],
   }),
   actions: {
-    addNewTask(task, cardName) {
-      this[cardName].push(task)
-      localStorage.setItem(cardName, JSON.stringify(this[cardName]))
+    addNewTask(task) {
+      this.newTasks.push(task)
+      localStorage.setItem('newTasks', JSON.stringify(this.newTasks))
     },
 
     updateTask(idx, newValue) {
       const task = this.newTasks[idx]
       task.text = newValue
-      localStorage.setItem(this.newTasks, JSON.stringify(this.newTasks))
-    },
-
-    deleteNewTask(index) {
-      this.newTasks.splice(index, 1)
+      localStorage.setItem('newTasks', JSON.stringify(this.newTasks))
     },
 
     moveItemInCurrentCard({ cardName, sourceIndex, targetIndex }) {
